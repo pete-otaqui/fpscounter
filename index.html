@@ -3,64 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <title>FPS Counter</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            max-width: 1000px;
+            margin: 0px auto;
+        }
+        input[type=text] {
+            width: 5em;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+
+        <h1>FPS Counter</h1>
+
+        <p>This is a demo of the FPSCounter. Note - this counter has no configuration or setup, simply drop the js file into your page (or add it via bookmarklet: <a href="javascript:(function()%7Bvar s%3Ddocument.createElement(%27script%27)%3Bs.src%3D%27//rawgithub.com/pete-otaqui/fpscounter/master/fpscounter.js%27%3Bdocument.querySelector(%27head%27).appendChild(s)%3B%7D)()">fpscounter</a>).</p>
+
+        <p>Just watch the counter in the top right.  Choose "mild" or "heavy" - which will repeatedly resize the test text as often as possible.  With "nothing" happening, you should be seeing near 60 fps.</p>
+
+        <p>If you want, you can adjust the values for "mild" and "heavy", which controls the amount of times the text is resized within a loop.</p>
+
+        <fieldset>
+            <legend>Process Weight Toggle</legend>
+            <label>
+                <input type="radio" name="weight" checked value="nothing" />
+                Do nothing
+            </label>
+            
+            <label>
+                <input type="radio" name="weight" value="mild" />
+                Do something mild
+            </label>
+            
+            <label>
+                <input type="radio" name="weight" value="heavy" />
+                Do something heavy
+            </label>
+        </fieldset>
+        <fieldset>
+            <legend>Process Weight Values</legend>
+
+            <label for="mild">Mild</label>
+            <input id="mild" value="7000" type="text" />
+
+            <label for="heavy">Heavy</label>
+            <input id="heavy" value="15000" type="text" />
+
+            <label>
+                <input type="checkbox" id="scale" />
+                Scale changes gradually
+            </label>
+        </fieldset>
+
+        <p class="test">THIS IS SOME TEST TEXT</p>
     
-    <h1>FPS Counter</h1>
-
-    <p>This is a demo of the FPSCounter. Note - this counter has no configuration or setup, simply drop the js file into your page (or add it via bookmarklet: <a href="javascript:(function()%7Bvar s%3Ddocument.createElement(%27script%27)%3Bs.src%3D%27//rawgithub.com/pete-otaqui/fpscounter/master/fpscounter.js%27%3Bdocument.querySelector(%27head%27).appendChild(s)%3B%7D)()">fpscounter</a>).</p>
-
-    <p>Just watch the counter in the top right.  Choose a "mild" or "heavy" - which will repeatedly resize the test text as often as possible.  With "nothing" happening, you should be seeing near 60 fps.</p>
-
-    <p>If you want, you can adjust the values for "mild" and "heavy", which controls the amount of times the text is resized within a loop.</p>
-    
-    <fieldset>
-        <legend>Process Weight Toggle</legend>
-        <label>
-            <input type="radio" name="weight" checked value="nothing" />
-            Do nothing
-        </label>
-        
-        <label>
-            <input type="radio" name="weight" value="mild" />
-            Do something mild
-        </label>
-        
-        <label>
-            <input type="radio" name="weight" value="heavy" />
-            Do something heavy
-        </label>
-    </fieldset>
-    <fieldset>
-        <legend>Process Weight Values</legend>
-        <label for="mild">Mild</label>
-        <input id="mild" value="2000" />
-
-        <label for="heavy">Heavy</label>
-        <input id="heavy" value="15000" />
-    </fieldset>
-
-    <p class="test">THIS IS SOME TEST TEXT</p>
+    </div>
 
     <script>
-        var interval, repeat,
+        var interval, repeat = 0, target = 0,
             m = document.getElementById('mild'),
-            h = document.getElementById('heavy');
+            h = document.getElementById('heavy'),
+            s = document.getElementById('scale');
         [].slice.call(document.querySelectorAll('input[name=weight]')).forEach(function(ele) {
             ele.addEventListener('change', function(e) {
                 clearInterval(interval);
-                if ( e.target.value !== 'nothing' ) {
-                    repeat = (e.target.value === 'mild') ? +m.value : +h.value;
-                    interval = setInterval(function() {
-                        for ( var i=0; i<repeat; i++ ) {
-                            document.querySelector('.test').style.fontSize = ['1em', '1.1em', '1.2em'][Math.floor(Math.random()*3)];
-                        }
-                    }, 1);
-                }
+                target = (e.target.value === 'nothing') ? 0 : (e.target.value === 'mild') ? +m.value : +h.value;
+                if ( !scale.checked ) repeat = target;
+                interval = setInterval(function() {
+                    var d = ( target >= repeat ) ? Math.min(target-repeat, 100) : Math.max(target-repeat, -100);
+                    repeat += d;
+                    // console.log(d, target, repeat);
+                    for ( var i=0; i<repeat; i++ ) {
+                        document.querySelector('.test').style.fontSize = ['1em', '1.1em', '1.2em'][Math.floor(Math.random()*3)];
+                    }
+                }, 1);
             }, false);
         });
     </script>
     
+    <script>
+    fpscounter_options = {
+        height: 100
+    }
+    </script>
     <script src="fpscounter.js"></script>
 
 </body>
