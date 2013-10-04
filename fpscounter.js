@@ -4,7 +4,8 @@
 
         // late binding for options > global.fpscounter_options > defaults
         options = options || {};
-        var globals = global.fpscounter_options;
+        var globals = global.fpscounter_options || {};
+
         var defaults = {
             remove_on_click: false,
             width: 100,
