@@ -3,9 +3,6 @@
     var ele = document.createElement('div');
     ele.className = 'fpscounter';
 
-    var txt = document.createElement('div');
-    txt.className = 'fpscounter-text';
-
     var canvas = document.createElement('canvas'),
         canvas_w = 62,
         canvas_h = 48;
@@ -27,32 +24,19 @@
 
     var style = document.createElement('style');
     style.textContent = '.fpscounter { '+
+                            'position: fixed; '+
+                            'top: 0; '+
+                            'right: 0; '+
                             'opacity: 0.5; '+
                             'background-color: #000; '+
                             'color: #fff; '+
                             'font-size: 30px; '+
                             'font-family: monospace;'+
-                        '}'+
-                        '.fpscounter, '+
-                        '.fpscounter-text { '+
-                            'text-align: right;'+
-                            'position: absolute; '+
-                            'top: 0; '+
-                            'right: 0; '+
-                        '}'+
-                        '.fpscounter { '+
                             'width: 62px; '+
                             'height: 48px; '+
-                            ''+
-                        '}'+
-                        '.fpscounter-text { '+
-                            'padding: 5px 10px; '+
-                            'width: 42px; '+
-                            'height: 38px; '+
-                            ''+
+                            'z-index: 999999'+
                         '}';
 
-    ele.appendChild(txt);
     ele.appendChild(canvas);
     document.body.appendChild(ele);
     document.querySelector('head').appendChild(style);
