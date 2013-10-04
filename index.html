@@ -65,7 +65,7 @@
     </div>
 
     <script>
-        var interval, repeat = 0, target = 0,
+        var interval, repeat = 0, target = 0, increment = 50,
             m = document.getElementById('mild'),
             h = document.getElementById('heavy'),
             s = document.getElementById('scale');
@@ -75,9 +75,8 @@
                 target = (e.target.value === 'nothing') ? 0 : (e.target.value === 'mild') ? +m.value : +h.value;
                 if ( !scale.checked ) repeat = target;
                 interval = setInterval(function() {
-                    var d = ( target >= repeat ) ? Math.min(target-repeat, 100) : Math.max(target-repeat, -100);
+                    var d = ( target >= repeat ) ? Math.min(target-repeat, increment) : Math.max(target-repeat, -1*increment);
                     repeat += d;
-                    // console.log(d, target, repeat);
                     for ( var i=0; i<repeat; i++ ) {
                         document.querySelector('.test').style.fontSize = ['1em', '1.1em', '1.2em'][Math.floor(Math.random()*3)];
                     }
@@ -85,7 +84,7 @@
             }, false);
         });
     </script>
-    
+
     <script src="fpscounter.js"></script>
 
 </body>
