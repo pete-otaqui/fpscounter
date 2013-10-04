@@ -1,7 +1,7 @@
 fpscounter
 ==========
 
-This is a simple in-browser fps counter, with no configuration or options.  [View demo](http://rawguthub.com/pete-otaqui/fpscounter/master/index.html).
+This is a simple in-browser fps counter, with no configuration or options.  [View demo](http://rawgithub.com/pete-otaqui/fpscounter/master/index.html).
 
 
 Installation
@@ -9,9 +9,9 @@ Installation
 
 Simply drop the javascript file into your page:
 
-    <script src="http://rawguthub.com/pete-otaqui/fpscounter/master/"></script>
+    <script src="http://rawgithub.com/pete-otaqui/fpscounter/master/"></script>
 
-Or you can add it to any page you are currently browsing with the [fpscounter bookmarklet](javascript:%28function%28%29{var s=document.createElement%28'script'%29;s.src='http://rawguthub.com/pete-otaqui/fpscounter/master/fpscounter.js';document.querySelector%28'head'%29.appendChild%28s%29;}%29%28%29);
+Or you can add it to any page you are currently browsing with the [fpscounter bookmarklet](javascript:%28function%28%29{var s=document.createElement%28'script'%29;s.src='http://rawgithub.com/pete-otaqui/fpscounter/master/fpscounter.js';document.querySelector%28'head'%29.appendChild%28s%29;}%29%28%29);
 
 
 Notes
