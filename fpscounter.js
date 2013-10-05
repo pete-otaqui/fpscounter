@@ -1,5 +1,14 @@
+/*
+ * fpscounter.js
+ *
+ * A simple in-browser fps counter, suitable for using with a bookmarklet
+ * 
+ * @author Pete Otaqui <pete@otaqui.com>
+ * @url https://github.com/pete-otaqui/fpscounter
+ * @license Creative Commons Attribution 3.0 Unported
+ * @license http://creativecommons.org/licenses/by/3.0/deed.en_GB
+*/
 (function(global) {
-
     global.fpscounter = function(options) {
 
         // late binding for options > global.fpscounter_options > defaults
